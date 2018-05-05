@@ -153,7 +153,8 @@ func (op *procOp) functionalBlockState() {
 }
 
 func (op *procOp) addMarker() {
-	marker := strings.Join([]string{`"`, op.file, ") ", strconv.Itoa(op.line), " : ", strconv.Itoa(op.marker), `"`}, "")
+	marker := strings.Join([]string{`"`, op.file, ") ", strconv.Itoa(op.line + 1), " : ", strconv.Itoa(op.marker), `"`}, "")
+	marker = strings.Replace(marker, `\`, "/", -1)
 	op.WriteString(`Lapiz.Test.incMk(`)
 	op.WriteString(marker)
 	op.WriteString(`);`)
